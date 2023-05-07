@@ -1600,8 +1600,8 @@ local Load = Create:CreateLoading(false)
 local window = Create:window()
 local Tab1 = window:CreateTab("Info")
 local Tab2 = window:CreateTab("TAB 2")
-local Info = Tab1:CreatePage("1","MeMayBeo HUb Info")
-local Info1 = Tab1:CreatePage("2","Main")
+local Info = Tab1:CreatePage(GetType = 1,"MeMayBeo HUb Info")
+local Info1 = Tab1:CreatePage(GetType = 2,"Main")
 
 Info:Label("Wellcome To MeMayBeo Hub")
 

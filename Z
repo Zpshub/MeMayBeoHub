@@ -1598,35 +1598,12 @@ local Create = {}
 
 local Load = Create:CreateLoading(false)
 local window = Create:window()
-local Tab1 = window:CreateTab("TAB 1")
+local Tab1 = window:CreateTab("Info")
 local Tab2 = window:CreateTab("TAB 2")
-local Page1 = Tab1:CreatePage("NAME PAGE")
-local Page2 = Tab1:CreatePage("NAME PAGE")
+local Info = Tab1:CreatePage("1","MeMayBeo HUb Info")
+local Info1 = Tab1:CreatePage("2","Main")
 
-Page1:Label("TEXT LABEL")
+Info:Label("Wellcome To MeMayBeo Hub")
 
-Page1:Toggle("Toggle",false,function(value)
-    print(value)
-end)
-
-Page1:Button("Button",function()
-end)
-
-local Slider = Page1:Slider("Slider",true,0,100,20,function(v)
-    print(v)
-end)
-
-Page1:Button("Uqdate Slider",function()
-    Slider:Update(20)
-end)
-
-local Dropdown = Page2:Dropdown("DropDown",{"1","2","3"},"1",function(v)
-    print(v)
-end)
-Page2:Button("Clear Dropdown",function()
-    Dropdown:Clear()
-end)
-
-Page2:Button("Add Dropdown",function()
-    Dropdown:Add("Test")
-end)
+Info:Label("Owner Hub : 𝔂𝓾𝓽𝓪 𝕯𝐙𝐒𝟏𝐓𝐆#2783")
+Info:Label("Dev Hub : zeroTNgaming#0001")

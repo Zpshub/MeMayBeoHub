@@ -321,7 +321,7 @@ local Create = {}
         Logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         Logo.BackgroundTransparency = 1.000
         Logo.Size = UDim2.new(0, 40, 0, 40)
-        Logo.Image = "http://www.roblox.com/asset/?id=13377314456"
+        Logo.Image = "http://www.roblox.com/asset/?id=10956907840"
 
         local Scrolling_PageTab = Instance.new("ScrollingFrame")
         Scrolling_PageTab.Parent = PageTab
@@ -1598,9 +1598,35 @@ local Create = {}
 
 local Load = Create:CreateLoading(true)
 local window = Create:window()
-local Tab1 = window:CreateTab("Info")
-local Tab2 = window:CreateTab("Main")
-local Page1 = Tab1:CreatePage("MeMayBeo Hub")
+local Tab1 = window:CreateTab("TAB 1")
+local Tab2 = window:CreateTab("TAB 2")
+local Page1 = Tab1:CreatePage("NAME PAGE")
 local Page2 = Tab1:CreatePage("NAME PAGE")
 
-Page1:Label("Wellcome To MeMayBeo Hub)
+Page1:Label("TEXT LABEL")
+
+Page1:Toggle("Toggle",false,function(value)
+    print(value)
+end)
+
+Page1:Button("Button",function()
+end)
+
+local Slider = Page1:Slider("Slider",true,0,100,20,function(v)
+    print(v)
+end)
+
+Page1:Button("Uqdate Slider",function()
+    Slider:Update(20)
+end)
+
+local Dropdown = Page2:Dropdown("DropDown",{"1","2","3"},"1",function(v)
+    print(v)
+end)
+Page2:Button("Clear Dropdown",function()
+    Dropdown:Clear()
+end)
+
+Page2:Button("Add Dropdown",function()
+    Dropdown:Add("Test")
+end)

@@ -1599,6 +1599,7 @@ local Create = {}
 local Load = Create:CreateLoading(false)
 local window = Create:window()
 local Tab1 = window:CreateTab("Info")
+local Tab3 = window:CreateTab("Misc")
 local Tab2 = window:CreateTab("Settings")
 local Info = Tab1:CreatePage(1,"MeMayBeo HUb Info")
 local Info1 = Tab1:CreatePage(2,"Main")
@@ -1607,6 +1608,138 @@ Info:Label("Wellcome To MeMayBeo Hub")
 
 Info:Label("Owner Hub : 𝔂𝓾𝓽𝓪 𝕯𝐙𝐒𝟏𝐓𝐆#2783")
 Info:Label("Dev Hub : zeroTNgaming#0001")
+
+local Misc = Tab3:CreatePage(1,"Misc 1")
+local Misc1 = Tab3:CreatePage(2,"Misc 2")
+
+Misc:Label("Server")
+
+Misc:Button("Rejoin",function()
+            local ts = game:GetService("TeleportService")
+            local p = game:GetService("Players").LocalPlayer
+            ts:Teleport(game.PlaceId, p)
+end)
+
+Misc:Button("Server Hop",function()
+        getgenv().AutoTeleport = true
+        getgenv().DontTeleportTheSameNumber = true 
+        getgenv().CopytoClipboard = false
+        if not game:IsLoaded() then
+            print("Game is loading waiting...")
+        end
+        local maxplayers = math.huge
+        local serversmaxplayer;
+        local goodserver;
+        local gamelink = "https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100" 
+        function serversearch()
+            for _, v in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync(gamelink)).data) do
+                if type(v) == "table" and v.playing ~= nil and maxplayers > v.playing then
+                    serversmaxplayer = v.maxPlayers
+                    maxplayers = v.playing
+                    goodserver = v.id
+                end
+            end       
+        end
+        function getservers()
+            serversearch()
+            for i,v in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync(gamelink))) do
+                if i == "nextPageCursor" then
+                    if gamelink:find("&cursor=") then
+                        local a = gamelink:find("&cursor=")
+                        local b = gamelink:sub(a)
+                        gamelink = gamelink:gsub(b, "")
+                    end
+                    gamelink = gamelink .. "&cursor=" ..v
+                    getservers()
+                end
+            end
+        end 
+        getservers()
+        if AutoTeleport then
+            if DontTeleportTheSameNumber then 
+                if #game:GetService("Players"):GetPlayers() - 4  == maxplayers then
+                    return warn("It has same number of players (except you)")
+                elseif goodserver == game.JobId then
+                    return warn("Your current server is the most empty server atm") 
+                end
+            end
+            game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, goodserver)
+        end
+end)
+
+Misc:Label("Ui")
+
+Misc:Button("Open Ui Inventory",function()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventoryWeapons")
+game.Players.localPlayer.PlayerGui.Main.Inventory.Visible = true
+end)
+
+Misc:Button("Open Ui Devil Shop",function()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("GetFruits")
+game:GetService("Players").LocalPlayer.PlayerGui.Main.FruitShop.Visible = true
+end)
+
+Misc:AddButton("Open Ui Inventory Fruit",function()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventoryFruits")
+game:GetService("Players").LocalPlayer.PlayerGui.Main.FruitInventory.Visible = true
+end)
+
+    Misc:Label("Teams")
+    
+    Misc:AddButton("Join Pirates Team",function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam","Pirates") 
+    end)
+    
+    Misc:AddButton("Join Marines Team",function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam","Marines") 
+    end)
+    
+        Misc:Label("Misc Player")
+	
+    Misc:AddButton("Unlock Portal",function()
+        getgenv().UnlockPortal = true
+    end)
+    
+    spawn(function()
+        while wait() do
+            pcall(function()
+                if getgenv().UnlockPortal == true then
+                    for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Notifications:GetChildren()) do
+                        if v.Name == "NotificationTemplate" then
+                            if string.find(v.Text,"cannot") then
+                                v:Destroy()
+                            end
+                        end
+                    end
+                end
+            end)
+        end
+    end)
+    
+    spawn(function()
+        while wait() do
+            pcall(function()
+                if getgenv().UnlockPortal == true then
+                    CastlePostoMansion = CFrame.new(-5084.8447265625, 316.48101806641, -3145.3752441406)
+                    MansiontoCastlePos = CFrame.new(-12464.596679688, 376.30590820312, -7567.2626953125)
+                    Castletophydra = CFrame.new(-5095.33984375, 316.48101806641, -3168.3134765625)
+                    HydratoCastle = CFrame.new(5741.869140625, 611.94750976562, -282.61154174805)
+                    if (CastlePostoMansion.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 8 then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-12471.169921875, 374.94024658203, -7551.677734375))
+                    end
+                    if (MansiontoCastlePos.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 8 then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-5072.08984375, 314.5412902832, -3151.1098632812))
+                    end
+                    if (Castletophydra.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 8 then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(5748.7587890625, 610.44982910156, -267.81704711914))
+                    end
+                    if (HydratoCastle.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 8 then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-5072.08984375, 314.5412902832, -3151.1098632812))
+                    end
+                end
+            end)
+        end
+    end)
 
 local Setting = Tab2:CreatePage(1,"Settings 1")
 local Setting1 = Tab2:CreatePage(2,"Settings 2")

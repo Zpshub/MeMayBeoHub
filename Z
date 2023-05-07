@@ -1906,7 +1906,7 @@ task.spawn(function()
 	end)
 	end)
 	
-Setting1:Toggle("Toggle",false,function(value)
+Setting1:Toggle("Noclip",false,function(value)
 _G.NoClip = true
 end)
 

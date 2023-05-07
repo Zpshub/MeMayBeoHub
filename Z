@@ -1599,7 +1599,7 @@ local Create = {}
 local Load = Create:CreateLoading(false)
 local window = Create:window()
 local Tab1 = window:CreateTab("Info")
-local Tab2 = window:CreateTab("TAB 2")
+local Tab2 = window:CreateTab("Settings")
 local Info = Tab1:CreatePage(1,"MeMayBeo HUb Info")
 local Info1 = Tab1:CreatePage(2,"Main")
 
@@ -1607,3 +1607,116 @@ Info:Label("Wellcome To MeMayBeo Hub")
 
 Info:Label("Owner Hub : 𝔂𝓾𝓽𝓪 𝕯𝐙𝐒𝟏𝐓𝐆#2783")
 Info:Label("Dev Hub : zeroTNgaming#0001")
+
+local Setting = Tab2:CreatePage(1,"Settings 1")
+local Setting1 = Tab2:CreatePage(2,"Settings 2")
+
+Setting:Toggle("Fast Attack",true,function(y)
+_G.FastAttack = y
+end)
+
+local CameraShaker = require(game.ReplicatedStorage.Util.CameraShaker)
+for i,v in pairs(getreg()) do
+    if typeof(v) == "function" and getfenv(v).script == game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework then
+        for x,w in pairs(debug.getupvalues(v)) do
+             if typeof(w) == "table" then
+                spawn(function()
+                    game:GetService("RunService").RenderStepped:Connect(function()
+                        if _G.FastAttack then
+                            pcall(function()
+								if game.Players.LocalPlayer.Character:FindFirstChild("Combat") or game.Players.LocalPlayer.Character:FindFirstChild("Black Leg") or game.Players.LocalPlayer.Character:FindFirstChild("Electro") or game.Players.LocalPlayer.Character:FindFirstChild("Fishman Karate") or game.Players.LocalPlayer.Character:FindFirstChild("Dragon Claw") or game.Players.LocalPlayer.Character:FindFirstChild("Superhuman") or game.Players.LocalPlayer.Character:FindFirstChild("Sharkman Karate") then
+									w.activeController.increment = 3
+								else
+									w.activeController.increment = 4
+								end             
+                                CameraShaker:Stop()
+								w.activeController.hitSound = 0
+                                w.activeController.timeToNextAttack = -(math.huge^math.huge^math.huge)
+                                w.activeController.attacking = false
+								w.activeController.timeToNextBlock = 0
+                                w.activeController.blocking = false                            
+                                w.activeController.hitboxMagnitude = 50
+    		                    w.activeController.humanoid.AutoRotate = true
+    	                      	w.activeController.focusStart = 0
+                            end)
+                        end
+                    end)
+                end)
+            end
+        end
+    end
+end
+
+Setting:Toggle("Fast Attack 1",false,function(y)
+_G.FastAttack1 = y
+end)
+
+
+local CameraShaker = require(game.ReplicatedStorage.Util.CameraShaker)
+for i,v in pairs(getreg()) do
+    if typeof(v) == "function" and getfenv(v).script == game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework then
+        for x,w in pairs(debug.getupvalues(v)) do
+             if typeof(w) == "table" then
+                spawn(function()
+                    game:GetService("RunService").RenderStepped:Connect(function()
+                        if _G.FastAttack1 then
+                            pcall(function()
+								if game.Players.LocalPlayer.Character:FindFirstChild("Combat") or game.Players.LocalPlayer.Character:FindFirstChild("Black Leg") or game.Players.LocalPlayer.Character:FindFirstChild("Electro") or game.Players.LocalPlayer.Character:FindFirstChild("Fishman Karate") or game.Players.LocalPlayer.Character:FindFirstChild("Dragon Claw") or game.Players.LocalPlayer.Character:FindFirstChild("Superhuman") or game.Players.LocalPlayer.Character:FindFirstChild("Sharkman Karate") then
+									w.activeController.increment = 3
+								else
+									w.activeController.increment = 4
+								end             
+                                CameraShaker:Stop()
+								w.activeController.hitSound = 0
+                                w.activeController.timeToNextAttack = -(math.huge^math.huge^math.huge)
+                                w.activeController.attacking = false
+								w.activeController.timeToNextBlock = 0
+                                w.activeController.blocking = false                            
+                                w.activeController.hitboxMagnitude = 50
+    		                    w.activeController.humanoid.AutoRotate = true
+    	                      	w.activeController.focusStart = 0
+                            end)
+                        end
+                    end)
+                end)
+            end
+        end
+    end
+end
+
+Setting:Toggle("Fast Attack 2",false,function(y)
+_G.FastAttack2 = y
+end)
+
+
+local CameraShaker = require(game.ReplicatedStorage.Util.CameraShaker)
+for i,v in pairs(getreg()) do
+    if typeof(v) == "function" and getfenv(v).script == game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework then
+        for x,w in pairs(debug.getupvalues(v)) do
+             if typeof(w) == "table" then
+                spawn(function()
+                    game:GetService("RunService").RenderStepped:Connect(function()
+                        if _G.FastAttack2 then
+                            pcall(function()
+								if game.Players.LocalPlayer.Character:FindFirstChild("Combat") or game.Players.LocalPlayer.Character:FindFirstChild("Black Leg") or game.Players.LocalPlayer.Character:FindFirstChild("Electro") or game.Players.LocalPlayer.Character:FindFirstChild("Fishman Karate") or game.Players.LocalPlayer.Character:FindFirstChild("Dragon Claw") or game.Players.LocalPlayer.Character:FindFirstChild("Superhuman") or game.Players.LocalPlayer.Character:FindFirstChild("Sharkman Karate") then
+									w.activeController.increment = 3
+								else
+									w.activeController.increment = 4
+								end             
+                                CameraShaker:Stop()
+								w.activeController.hitSound = 0
+                                w.activeController.timeToNextAttack = -(math.huge^math.huge^math.huge)
+                                w.activeController.attacking = false
+								w.activeController.timeToNextBlock = 0
+                                w.activeController.blocking = false                            
+                                w.activeController.hitboxMagnitude = 50
+    		                    w.activeController.humanoid.AutoRotate = true
+    	                      	w.activeController.focusStart = 0
+                            end)
+                        end
+                    end)
+                end)
+            end
+        end
+    end
+end

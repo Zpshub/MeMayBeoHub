@@ -321,7 +321,7 @@ local Create = {}
         Logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         Logo.BackgroundTransparency = 1.000
         Logo.Size = UDim2.new(0, 40, 0, 40)
-        Logo.Image = "http://www.roblox.com/asset/?id=10956907840"
+        Logo.Image = "http://www.roblox.com/asset/?id=13377314456"
 
         local Scrolling_PageTab = Instance.new("ScrollingFrame")
         Scrolling_PageTab.Parent = PageTab

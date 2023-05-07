@@ -1907,5 +1907,48 @@ task.spawn(function()
 	end)
 	
 Setting1:Toggle("Toggle",false,function(value)
-    print(value)
+_G.NoClip = true
 end)
+
+		local CharParts = {}
+		game:GetService("RunService").Stepped:connect(function()
+			pcall(function()
+				if _G.NoClip then
+					for i = 1, #CharParts do
+						CharParts[i].CanCollide = false
+					end
+				else
+					for i = 1, #CharParts do
+						CharParts[i].CanCollide = true
+					end
+				end
+			end)
+		end)
+
+		function SetupCharCollide(Char)
+			CharParts = {}
+			Char:WaitForChild("Head")
+			for i, v in pairs(Char:GetChildren()) do
+				if v:IsA("BasePart") then
+					table.insert(CharParts, v)
+				end
+			end
+		end
+
+		if game.Players.LocalPlayer.Character then
+			SetupCharCollide(game.Players.LocalPlayer.Character)
+		end
+		game.Players.LocalPlayer.CharacterAdded:connect(function(Ch)
+			SetupCharCollide(Ch)
+		end)
+
+		spawn(function()
+			pcall(function()
+				local vu = game:GetService("VirtualUser")
+				game:GetService("Players").LocalPlayer.Idled:connect(function()
+					vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+					task.wait(0.5)
+					vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+				end)
+			end)
+		end)

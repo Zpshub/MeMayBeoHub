@@ -1611,6 +1611,10 @@ Info:Label("Dev Hub : zeroTNgaming#0001")
 local Setting = Tab2:CreatePage(1,"Settings 1")
 local Setting1 = Tab2:CreatePage(2,"Settings 2")
 
+
+
+Setting:Label("Fast Attack")
+
 Setting:Toggle("Fast Attack",true,function(y)
 _G.FastAttack = y
 end)
@@ -1722,7 +1726,7 @@ for i,v in pairs(getreg()) do
 end
 
 
-Setting:Toggle("Super Fast Attack Work PC",false,function(y)
+Setting:Toggle("Super Fast Attack",false,function(y)
 _G.FastAttackNormalSpeed = y
 end)
 
@@ -1901,3 +1905,7 @@ task.spawn(function()
 		end)
 	end)
 	end)
+	
+Setting1:Toggle("Toggle",false,function(value)
+    print(value)
+end)
